@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* LifeOS "instrument cluster" system: monochrome chrome, color only encodes a life domain. */
+:root {
+  --background: #f4f6f9;
+  --card: #ffffff;
+  --card-2: #eef1f5;
+  --foreground: #0e141b;
+  --muted: #5f6b7a;
+  --border: rgba(15, 23, 42, 0.09);
+  --border-strong: rgba(15, 23, 42, 0.18);
+  --accent: #0e141b;
+  --accent-fg: #ffffff;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 16px 32px -20px rgba(15, 23, 42, 0.28);
+  --c-workout: #d9622b;
+  --c-learning: #6d55d9;
+  --c-content: #c8417f;
+  --c-personal: #1e9b72;
+  --c-work: #2f78d1;
+  --c-money: #a97c06;
+  --c-other: #6b7280;
+  --glow: radial-gradient(55% 40% at 15% 0%, rgba(109, 85, 217, 0.1), transparent 70%),
+    radial-gradient(40% 35% at 95% 5%, rgba(217, 98, 43, 0.08), transparent 70%);
+}
+.dark {
+  --background: #0b0e13;
+  --card: #121720;
+  --card-2: #19202b;
+  --foreground: #e9edf3;
+  --muted: #8b95a5;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --accent: #e9edf3;
+  --accent-fg: #0b0e13;
+  --shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+  --c-workout: #f59a63;
+  --c-learning: #a594f9;
+  --c-content: #f08ab5;
+  --c-personal: #5cd3a6;
+  --c-work: #6cb0f5;
+  --c-money: #e8c255;
+  --c-other: #8b93a1;
+  --glow: radial-gradient(55% 40% at 15% 0%, rgba(165, 148, 249, 0.12), transparent 70%),
+    radial-gradient(40% 35% at 95% 5%, rgba(245, 154, 99, 0.08), transparent 70%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-workout: var(--c-workout);
+  --color-learning: var(--c-learning);
+  --color-content: var(--c-content);
+  --color-personal: var(--c-personal);
+  --color-work: var(--c-work);
+  --color-money: var(--c-money);
+  --color-other: var(--c-other);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+}
+
+body {
+  background-color: var(--background);
+  background-image: var(--glow);
+  background-attachment: fixed;
+  color: var(--foreground);
+}
+
+@layer components {
+  .surface { background: var(--card); border: 1px solid var(--border); border-radius: 22px; box-shadow: var(--shadow); }
+  .surface-sm { background: var(--card); border: 1px solid var(--border); border-radius: 14px; }
+}
+
+:focus-visible { outline: 2px solid var(--foreground); outline-offset: 2px; }
+dialog::backdrop { backdrop-filter: blur(6px); }
+
+@keyframes arc-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  .arc { animation: arc-in 0.7s ease-out both; }
+}
